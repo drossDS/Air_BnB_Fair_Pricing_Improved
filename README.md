@@ -76,9 +76,9 @@ Additionally, model optimization techniques and dimensionality reduction techniq
 ## 4.5. Outlier Removal
 Data below the 5th and 95th precentiles were removed in an attempt to improve model performance. The 5th and 95th percentiles were simply chosen as convenient 'round number' values, and no analysis was performed to state that these values are in any way preferable. It should be noted however, that in choosing these limits, 90% of the data will be preserved.
 
-The result was vastly improved metrics and a totally different feature set being seected as the optimal set of columns (listing attributes) to be included in the model.  The plot is show below followed again by the performance metrics.
+The result was vastly improved metrics and a totally different feature set being selected as the optimal set of columns (listing attributes) to be included in the model.  The plot is show below followed again by the performance metrics.
 
-![Price Distribution](best_model_outliers_removed.png)
+![Price Distribution](images/best_model_outliers_removed.png)
 
 The most important modeling results are provided in the table below:
 |       Outliers Removed      | RMSE    | r2    |
@@ -100,6 +100,8 @@ The model appears to struggle with highly-priced listings.  These were quickly e
 
 More domain knowledge and data could help to understand some of these more difficult listings and create features that will improve the model performance.  However, it is also possible that the provided data cannot accurately describe the prices which are set by very different people with their own personal and financial needs.  Additional study of the data is required to determine how much more information can be gained from it.
 
+After removing outliers, vast improvements were made, and the models were able to far outpace the performance of the null model.  What this indicates is that the model does in fact have a difficult time with higher priced listings.  It could simply be that the host's pricing strategy is irrational in some way with respect to the greater distribution of listings.  Ideally a feature would be discovered or created that adds enough fidelity to the model to better predict the prices of the outlier units.
+
 # 6. Conclusions
 ## 6.1. Fair Pricing Model Conclusions
 * An Airbnb fair price predictor is able to be created, however, it's performance is almost negligibly better than the null model
@@ -110,11 +112,15 @@ More domain knowledge and data could help to understand some of these more diffi
 * Even with the effects of outliers minimized, the predictions are still highly variable
 * Model optimization and dimensionality reduction techniques did not prove capable of improving the model performance
 * Additional features must be created to see any significant improvements in model performance
+* Removing outliers (listings above the 5th and below the 9th percentiles of pricing) drastically improved model performance:
+    * The R-squared value of this model is 0.678
+    * The RMSE is \\$48.84, which is still beyond the problem statement target of $20, at still in the same order of magnitude
 
 ## 6.2 - Recommender Conclusions
 * A recommender system was able to be developed which would suggest a requested number of Airbnb listings based on user inputs
 * The pricing model from the previous notebook was able to be utilized to provide a pricing estimate
     * Despite the poor performance of the model, it was still able to produce an estimate which seems reasonable based on the distribution of similar listings
+    * When the outliers (below 5th and above 95th percentiles of the price distribution) were removed in the same manner as in the previous notebook to improve model performance, only a \\$1.22 difference was seen between the predictions.  This may suggest that the model is more affected by its ability to predict outliers and not on the outliers affecting the accuracy of the model predictions for more normal listings
     
 # 7. Next Steps
 ## 7.1. Fair Pricing Model
@@ -126,6 +132,7 @@ More domain knowledge and data could help to understand some of these more diffi
 * Train a neural network regressor on the data and compare results
 * Take all of the above improvements and attempt predictions on the testing dataset
 * If possible implement the new model into the recommender
+* Remove outliers from the dataset that is used to calculate correlation coefficients, and recalculate these correlation coefficients to re-create the feature sets
 
 ## 7.2. Recommender
 * Incorporate a refined pricing model if one is able to be produced

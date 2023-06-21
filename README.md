@@ -73,7 +73,22 @@ The most important modeling results are provided in the table below:
 
 Additionally, model optimization techniques and dimensionality reduction techniques did not serve to improve the models and rather, made them slightly worse.
 
-## 4.5. Recommender Results
+## 4.5. Outlier Removal
+Data below the 5th and 95th precentiles were removed in an attempt to improve model performance. The 5th and 95th percentiles were simply chosen as convenient 'round number' values, and no analysis was performed to state that these values are in any way preferable. It should be noted however, that in choosing these limits, 90% of the data will be preserved.
+
+The result was vastly improved metrics and a totally different feature set being seected as the optimal set of columns (listing attributes) to be included in the model.  The plot is show below followed again by the performance metrics.
+
+![Price Distribution](best_model_outliers_removed.png)
+
+The most important modeling results are provided in the table below:
+|       Outliers Removed      | RMSE    | r2    |
+|-----------------------------|---------|-------|
+| Null Model, Training Data   | $89.06  | 0     |
+| Null Model, Validation Data | $86.09  | 0     |
+| Best Model, Training Data    | $18.92 | 0.955 |
+| Best Model, Validation Data | $48.84 | 0.678 |
+
+## 4.6. Recommender Results
 A recommender was able to be created which would take user-input Airbnb criteria and produce a list and price distribution of similar listings currently on Airbnb.  The graphical output of this is shown below with the red line as the fair price prediction.
 
 ![Price Distribution](images/rec_output.png)

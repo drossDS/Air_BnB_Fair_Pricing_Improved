@@ -74,7 +74,7 @@ The most important modeling results are provided in the table below:
 Additionally, model optimization techniques and dimensionality reduction techniques did not serve to improve the models and rather, made them slightly worse.
 
 ## 4.5. Outlier Removal
-Data below the 5th and 95th precentiles were removed in an attempt to improve model performance. The 5th and 95th percentiles were simply chosen as convenient 'round number' values, and no analysis was performed to state that these values are in any way preferable. It should be noted however, that in choosing these limits, 90% of the data will be preserved.
+Listings with prices below the 5th percentile and above the 95th precentile were removed in an attempt to improve model performance. The 5th and 95th percentiles were simply chosen as convenient 'round number' values, and no analysis was performed to state that these values are in any way preferable. It should be noted however, that in choosing these limits, 90% of the data will be preserved.
 
 The result was vastly improved metrics and a totally different feature set being selected as the optimal set of columns (listing attributes) to be included in the model.  The plot is show below followed again by the performance metrics.
 
